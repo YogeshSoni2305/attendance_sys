@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Webcam Face Recognition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body
+    class="bg-gray-100 min-h-screen flex flex-col items-center justify-center"
+  >
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
+      <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        Live Webcam Face Recognition
+      </h1>
+      {% if error %}
+      <p class="text-red-500 text-center">{{ error }}</p>
+      {% else %}
+      <img
+        src="{{ url_for('video_feed') }}"
+        alt="Webcam Feed"
+        class="w-full rounded-md shadow-md"
+        id="videoFeed"
+      />
+      {% endif %}
+      <a
+        href="/"
+        class="mt-6 inline-block py-3 px-6 bg-gray-700 text-white rounded-md hover:bg-gray-800 transition duration-200"
+        >Back to Home</a
+      >
+    </div>
+
+    <!-- Popup Notification -->
+    <div
+      id="attendancePopup"
+      class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl border border-gray-200 z-50"
+    >
+      <p
+        id="popupMessage"
+        class="text-lg font-medium text-gray-800 text-center"
+      ></p>
+      <button
+        id="closePopup"
+        class="mt-4 w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
+      >
+        OK, I can go now
+      </button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
